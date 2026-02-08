@@ -236,7 +236,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
               className="btn-primary inline-flex items-center gap-2 text-sm sm:text-base glow-pulse"
             >
               <Sparkles className="w-4 h-4" />
-              Pre-Order Now
+              Order Now
               <ChevronRight className="w-4 h-4" />
             </a>
             <div className="mt-3 sm:mt-4">

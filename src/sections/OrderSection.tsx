@@ -161,7 +161,7 @@ const OrderSection = ({ className = '' }: OrderSectionProps) => {
             <p className="font-inter text-[11px] mt-10"
               style={{ color: 'rgba(167, 176, 200, 0.6)', textShadow: '0 1px 3px rgba(0,0,0,0.9)' }}
             >
-              Ebook delivery on release day. Pre-order price guarantee.
+              Available in all formats. Order your copy today.
             </p>
           </div>
         </div>
