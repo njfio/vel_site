@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 3%;
+    --foreground: 220 30% 96%;
+    --card: 222 40% 5%;
+    --card-foreground: 220 30% 96%;
+    --popover: 222 40% 5%;
+    --popover-foreground: 220 30% 96%;
+    --primary: 192 78% 54%;
+    --primary-foreground: 222 47% 3%;
+    --secondary: 222 30% 12%;
+    --secondary-foreground: 220 30% 96%;
+    --muted: 222 30% 12%;
+    --muted-foreground: 220 20% 65%;
+    --accent: 192 78% 54%;
+    --accent-foreground: 222 47% 3%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 25%;
+    --input: 220 20% 25%;
+    --ring: 192 78% 54%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
+  body {
+    @apply bg-[#05060B] text-[#F2F5FA] antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Typography */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* HUD Frame Styles */
+.hud-frame {
+  border: 1px solid rgba(242, 245, 250, 0.65);
+  position: relative;
+}
+
+.hud-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(242, 245, 250, 0.85);
+}
+
+.hud-corner-tl {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.hud-corner-tr {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.hud-corner-bl {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.hud-corner-br {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.hud-accent-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #2EC3E5;
+}
+
+/* Text Glow & Shadow for Readability */
+.text-glow {
+  text-shadow: 
+    0 0 18px rgba(46, 195, 229, 0.35),
+    0 0 40px rgba(46, 195, 229, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text-glow-strong {
+  text-shadow: 
+    0 0 24px rgba(46, 195, 229, 0.5),
+    0 0 48px rgba(46, 195, 229, 0.3),
+    0 0 80px rgba(46, 195, 229, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Text Shadow for readability on light backgrounds */
+.text-shadow-dark {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 2px 8px rgba(0, 0, 0, 0.7),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-heavy {
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 1),
+    0 2px 12px rgba(0, 0, 0, 0.9),
+    0 4px 24px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Background text protection */
+.text-protected {
+  position: relative;
+}
+
+.text-protected::before {
+  content: '';
+  position: absolute;
+  inset: -4px -8px;
+  background: linear-gradient(180deg, rgba(5, 6, 11, 0.7) 0%, rgba(5, 6, 11, 0.5) 100%);
+  z-index: -1;
+  border-radius: 4px;
+  filter: blur(8px);
+}
+
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Ability Card */
+.ability-card {
+  border: 1px solid rgba(242, 245, 250, 0.35);
+  background: rgba(11, 14, 23, 0.6);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.ability-card:hover {
+  border-color: rgba(46, 195, 229, 0.6);
+  box-shadow: 0 0 20px rgba(46, 195, 229, 0.15);
+}
+
+.ability-card::before,
+.ability-card::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(46, 195, 229, 0.5);
+}
+
+.ability-card::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ability-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Meta Chip */
+.meta-chip {
+  border: 1px solid rgba(242, 245, 250, 0.4);
+  padding: 6px 12px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #A7B0C8;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: rgba(46, 195, 229, 0.15);
+  border: 1px solid rgba(46, 195, 229, 0.6);
+  color: #2EC3E5;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: rgba(46, 195, 229, 0.25);
+  box-shadow: 0 0 24px rgba(46, 195, 229, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(242, 245, 250, 0.4);
+  color: #F2F5FA;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(46, 195, 229, 0.6);
+  color: #2EC3E5;
+}
+
+/* Review Card */
+.review-card {
+  border: 1px solid rgba(242, 245, 250, 0.25);
+  background: rgba(11, 14, 23, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 32px;
+  position: relative;
+}
+
+.review-card::before,
+.review-card::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(46, 195, 229, 0.4);
+}
+
+.review-card::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.review-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Starfield Background */
+.starfield-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Section Base */
+.section-pinned {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05060B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(46, 195, 229, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(46, 195, 229, 0.5);
+}
+
+/* Selection */
+::selection {
+  background: rgba(46, 195, 229, 0.3);
+  color: #F2F5FA;
+}
+
+/* Prose styles for sample chapter */
+.prose {
+  max-width: 65ch;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+}
+
+.prose p:first-letter {
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  margin-top: 0.1em;
+}
+
+/* Character card hover effects */
+.character-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.character-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Stat bar animation */
+.stat-bar {
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Newsletter input focus */
+input:focus {
+  box-shadow: 0 0 0 2px rgba(46, 195, 229, 0.2);
+}
+
+/* Smooth image transitions */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Button ripple effect */
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Custom scrollbar for chapter */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(46, 195, 229, 0.3);
+  border-radius: 2px;
+}
+
+/* Glow animation */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(46, 195, 229, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(46, 195, 229, 0.4);
+  }
+}
+
+.glow-pulse {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Mobile HUD Corner sizing */
+@media (max-width: 768px) {
+  .hud-corner {
+    width: 16px;
+    height: 16px;
+    border-width: 1.5px;
+  }
+  
+  .hud-accent-corner {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .meta-chip {
+    padding: 4px 8px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+  
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  
+  .btn-secondary {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+  
+  .review-card {
+    padding: 20px;
+  }
+  
+  .review-card::before,
+  .review-card::after {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .hud-corner {
+    width: 12px;
+    height: 12px;
+    border-width: 1px;
+  }
+  
+  .section-pinned {
+    min-height: 100svh;
+    height: 100svh;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .ability-card:hover {
+    border-color: rgba(242, 245, 250, 0.35);
+    box-shadow: none;
+  }
+  
+  .character-card:hover {
+    transform: none;
+  }
+}
+
+/* Prevent text selection on interactive elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fix for iOS momentum scrolling */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
